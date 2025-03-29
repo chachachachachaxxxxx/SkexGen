@@ -13,7 +13,7 @@ from OCC.Core.BRepBuilderAPI import (BRepBuilderAPI_MakeFace,
 from OCC.Core.BRepAlgoAPI import BRepAlgoAPI_Fuse, BRepAlgoAPI_Cut, BRepAlgoAPI_Common
 from OCC.Core.BRepPrimAPI import BRepPrimAPI_MakePrism
 from OCC.Core.BRepAdaptor import BRepAdaptor_Surface
-from OCC.Core.BRepGProp import brepgprop_VolumeProperties, brepgprop_SurfaceProperties
+from OCC.Core.BRepGProp import brepgprop
 from OCC.Core.GProp import GProp_GProps
 from OCC.Core.ShapeFix import ShapeFix_Face, ShapeFix_Wire
 from OCC.Core.gp import (gp_Vec, gp_Ax2, gp_Dir, gp_Circ)
@@ -71,7 +71,7 @@ class DeepCADReconverter:
 
                 # Check empty solid (skip)
                 props = GProp_GProps()
-                brepgprop_VolumeProperties(ext_solid, props)
+                brepgprop.VolumeProperties(ext_solid, props)
                 solid_volume = props.Mass()
                 if solid_volume == 0:
                     self.vertex_dict.clear()
@@ -100,9 +100,9 @@ class DeepCADReconverter:
                 # Check solid changes (skip)
                 if prev_solid is not None:
                     props = GProp_GProps()
-                    brepgprop_VolumeProperties(prev_solid, props)
+                    brepgprop.VolumeProperties(prev_solid, props)
                     solid_volume1 = props.Mass()
-                    brepgprop_VolumeProperties(cur_solid, props)
+                    brepgprop.VolumeProperties(cur_solid, props)
                     solid_volume2 = props.Mass()
                     if (solid_volume1 - solid_volume2) == 0:
                         self.vertex_dict.clear()
@@ -366,7 +366,7 @@ class DeepCADReconverter:
                 # Cut inner face from outer 
                 cut_face = self.my_op(face_list[outer_idx], face, 'cut')
                 # Compute area, check if inner is larger than outer 
-                brepgprop_SurfaceProperties(cut_face, props)
+                brepgprop.SurfaceProperties(cut_face, props)
                 area = props.Mass()
                 if area == 0.0:
                     outer_idx = f_idx 

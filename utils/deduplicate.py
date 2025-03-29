@@ -13,7 +13,7 @@ COORD_PAD = 4
 EXT_PAD = 1
 EXTRA_PAD = 1
 R_PAD = 2
-NUM_TRHEADS = 36
+NUM_TRHEADS = 10
 
 def hash_loop_se(data):
     if len(data['se_ext']) == 0: 

@@ -49,6 +49,7 @@ class SE():
             elif data['name'] in data_split['validation']:
                 val_samples.append(data)
             else:
+                # 我真服了，原来还有这一行呢
                 train_samples.append(data) # put into training if no match
 
         print(f"Data Summary")

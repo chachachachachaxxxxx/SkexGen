@@ -3,7 +3,7 @@ import argparse
 from dataset import SE
 import pickle
 
-NUM_TRHEADS = 36
+NUM_TRHEADS = 10
 NUM_FOLDERS = 100
 
 if __name__ == "__main__":

@@ -32,7 +32,7 @@ def raise_timeout(signum, frame):
     raise TimeoutError
 
 
-NUM_TRHEADS = 36 
+NUM_TRHEADS = 10 
 NUM_FOLDERS = 100 
 
 class NormalizeSE:
